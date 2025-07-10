@@ -1,11 +1,8 @@
-export function saveAuthToken(token) {
-    localStorage.setItem('token', token);
-}
+const express = require('express');
+const router = express.Router();
+const authController = require('../controllers/authController');
 
-export function getAuthToken() {
-    return localStorage.getItem('token');
-}
+router.post('/register', authController.register);
+router.post('/login', authController.login);
 
-export function clearAuthToken() {
-    localStorage.removeItem('token');
-}
+module.exports = router;

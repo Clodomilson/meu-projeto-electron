@@ -1,0 +1,20 @@
+{
+  "name": "meu-projeto-electron",
+  "version": "1.0.0",
+  "description": "Projeto inicial electron desenvolvido em ambiente educacional para fins de testes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Clodomilson/meu-projeto-electron.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Clodomilson/meu-projeto-electron/issues"
+  },
+  "homepage": "https://github.com/Clodomilson/meu-projeto-electron#readme"
+}

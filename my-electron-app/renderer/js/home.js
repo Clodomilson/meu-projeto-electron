@@ -1,20 +1,36 @@
-import { getToken, clearToken } from './auth.js';
-import axios from 'axios';
+// Verificar se o usuário está autenticado
+function checkAuth() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'index.html';
+        return false;
+    }
+    return true;
+}
 
-if (!getToken()) {
+// Carregar dados do usuário
+function loadUserData() {
+    const user = localStorage.getItem('user');
+    if (user) {
+        const userData = JSON.parse(user);
+        document.getElementById('userName').textContent = userData.nome;
+        document.getElementById('userEmail').textContent = userData.email;
+    }
+}
+
+// Função de logout
+function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     window.location.href = 'index.html';
 }
 
-document.getElementById('logoutBtn').onclick = async () => {
-    clearToken();
-    window.location.href = 'index.html';
-};
-
-// Exemplo para listar dados do usuário da API 
-axios.get('http://localhost:3000/data', {
-    headers: { Authorization: `Bearer ${getToken()}` }
-}).then(response => {
-    document.getElementById('dataArea').innerText = JSON.stringify(response.data);
-}).catch(error => {
-    console.error('Error fetching home data:', error);
+// Inicializar a página
+document.addEventListener('DOMContentLoaded', function() {
+    if (checkAuth()) {
+        loadUserData();
+    }
 });
+
+// Event listener para o botão de logout
+document.getElementById('logoutBtn').addEventListener('click', logout);

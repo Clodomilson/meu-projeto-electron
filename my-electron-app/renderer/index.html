@@ -1,28 +1,116 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Login/Cadastro</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Login</h1>
-        <form id="loginForm">
-            <div class="mb-3">
-                <label for="username" class="form-label">Usuário</label>
-                <input type="text" class="form-control" id="username" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Entrar</button>
-        </form>
+  <div class="container">
+
+    <!-- LOGIN -->
+    <div id="loginForm">
+      <h2>Login</h2>
+      <input type="text" id="loginUser" placeholder="Usuário" />
+      <input type="password" id="loginPass" placeholder="Senha" />
+      <button onclick="logar()">Entrar</button>
+      <p>Não tem conta? <a href="#" onclick="showRegister()">Cadastre-se</a></p>
     </div>
 
-    <script src="js/login.js" type="module"></script>
+    <!-- CADASTRO -->
+    <div id="registerForm" style="display: none;">
+      <h2>Cadastro</h2>
+      <input type="text" id="registerUser" placeholder="Novo Usuário" />
+      <input type="password" id="registerPass" placeholder="Senha" />
+      <button onclick="cadastrar()">Cadastrar</button>
+      <p>Já tem conta? <a href="#" onclick="showLogin()">Fazer login</a></p>
+    </div>
 
+    <!-- TELA APÓS LOGIN -->
+    <div id="main-content" style="display: none;">
+      <h2>Bem-vindo!</h2>
+      <p>Tela em branco para futuras funções.</p>
+      <button onclick="voltarInicio()">Voltar para o início</button>
+    </div>
+
+    <footer>Desenvolvido por Vinicius</footer>
+  </div>
+
+  <script>
+    function showRegister() {
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("registerForm").style.display = "block";
+      document.getElementById("main-content").style.display = "none";
+    }
+
+    function showLogin() {
+      document.getElementById("registerForm").style.display = "none";
+      document.getElementById("loginForm").style.display = "block";
+      document.getElementById("main-content").style.display = "none";
+    }
+
+    function voltarInicio() {
+      showLogin();
+    }
+
+    function cadastrar() {
+      const userInput = document.getElementById("registerUser");
+      const passInput = document.getElementById("registerPass");
+
+      const user = userInput.value.trim();
+      const pass = passInput.value.trim();
+
+      if (!user || !pass) {
+        alert("Usuário e senha são obrigatórios para cadastro.");
+        return;
+      }
+
+      if (localStorage.getItem(user)) {
+        alert("Esse nome de usuário já existe.");
+        return;
+      }
+
+      localStorage.setItem(user, pass);
+      alert("Cadastro realizado com sucesso!");
+
+      // Limpa os campos
+      userInput.value = "";
+      passInput.value = "";
+
+      // Garante que os campos estejam ativos
+      userInput.disabled = false;
+      passInput.disabled = false;
+
+      showLogin();
+    }
+
+    function logar() {
+      const userInput = document.getElementById("loginUser");
+      const passInput = document.getElementById("loginPass");
+
+      const user = userInput.value.trim();
+      const pass = passInput.value.trim();
+
+      if (!user || !pass) {
+        alert("Preencha o usuário e a senha para entrar.");
+        return;
+      }
+
+      const savedPass = localStorage.getItem(user);
+
+      if (savedPass === pass) {
+        alert("Login realizado!");
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("registerForm").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+
+        // Limpa os campos
+        userInput.value = "";
+        passInput.value = "";
+      } else {
+        alert("Usuário ou senha inválido.");
+      }
+    }
+  </script>
 </body>
 </html>

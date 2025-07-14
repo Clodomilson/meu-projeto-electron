@@ -48,3 +48,14 @@ packages/
 # Arquivos de configuração local
 config.json
 settings.json
+
+# Banco de dados SQLite
+*.sqlite
+*.sqlite3
+*.db
+
+# Arquivo de desenvolvimento mantido no repositório
+!.env.development
+
+# Arquivos de configuração de desenvolvimento
+config.env

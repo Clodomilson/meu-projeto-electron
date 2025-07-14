@@ -1,20 +1,19 @@
 {
-  "name": "meu-projeto-electron",
+  "name": "projeto-electronmat",
   "version": "1.0.0",
-  "description": "Projeto inicial electron desenvolvido em ambiente educacional para fins de testes.",
-  "main": "index.js",
+  "description": "Projeto Electron com sistema de autenticação",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run server\" \"npm run electron\"",
+    "server": "cd api-server && npm start",
+    "electron": "wait-on http://localhost:3000 && cd my-electron-app && npm start",
+    "install-all": "npm install && cd api-server && npm install && cd ../my-electron-app && npm install",
+    "build": "cd my-electron-app && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Clodomilson/meu-projeto-electron.git"
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0"
   },
-  "keywords": [],
+  "keywords": ["electron", "authentication", "sqlite"],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Clodomilson/meu-projeto-electron/issues"
-  },
-  "homepage": "https://github.com/Clodomilson/meu-projeto-electron#readme"
+  "license": "MIT"
 }

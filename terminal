@@ -1,1 +1,21 @@
-npm start
+Passo a passo para rodar o projeto
+Instalar dependências do backend:
+
+Abra o terminal e navegue até a pasta do backend:
+Instale as dependências:
+Instalar dependências do Electron:
+
+No terminal, navegue até a pasta do Electron:
+Instale as dependências:
+Iniciar o backend (API):
+
+Na pasta api-server, rode:
+Deixe esse terminal aberto.
+Iniciar o app Electron:
+
+Em outro terminal, navegue até a pasta my-electron-app e rode:
+Pronto! Agora o backend e o app Electron estarão rodando juntos. Se precisar repetir, é só seguir esses passos.
+
+
+concurrently
+npm run dev    para execultar tudo 

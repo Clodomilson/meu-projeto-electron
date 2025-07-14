@@ -4,6 +4,7 @@
   "description": "Projeto Electron com sistema de autenticação",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run electron\"",
+    
     "server": "cd api-server && npm start",
     "electron": "wait-on http://localhost:3000 && cd my-electron-app && npm start",
     "install-all": "npm install && cd api-server && npm install && cd ../my-electron-app && npm install",
@@ -11,9 +12,14 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
+    "electron": "^37.2.1",
     "wait-on": "^7.2.0"
   },
-  "keywords": ["electron", "authentication", "sqlite"],
+  "keywords": [
+    "electron",
+    "authentication",
+    "sqlite"
+  ],
   "author": "",
   "license": "MIT"
 }
